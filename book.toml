@@ -1,5 +1,8 @@
 [book]
-authors = []
+authors = ["Xiaobin.Liu"]
 language = "zh-CN"
 multilingual = false
 src = "src"
+
+[build]
+build-dir = "docs"
