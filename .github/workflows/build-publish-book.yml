@@ -1,8 +1,6 @@
 name: Build Publish Book
 on:
-  push:
-    branches:
-      - main
+  push
 		
 jobs:
   build:
