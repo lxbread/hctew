@@ -1,7 +1,7 @@
 name: Build Publish Book
 
 on:
-  push
+  - push
 		
 jobs:
   build:
