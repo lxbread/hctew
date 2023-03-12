@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第二章 沉睡的巴黎——钟声响起</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">第一天：伏击</li><li class="chapter-item expanded "><a href="day1_chapter1.html"><strong aria-hidden="true">1.</strong> 第一章 ”安全“</a></li><li class="chapter-item expanded "><a href="day1_chapter2.html" class="active"><strong aria-hidden="true">2.</strong> 第二章 沉睡的巴黎——钟声响起</a></li><li class="chapter-item expanded affix "><li class="part-title">第二天：挣扎</li><li class="chapter-item expanded "><a href="day1_chapter1.html"><strong aria-hidden="true">3.</strong> 第一章</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>1851 年 12 月 2 日，居住在巴黎蕾奥妮街4 号的浩特·索恩的代表维尔西尼正在睡觉。他睡得很香；他一直工作到深夜。维尔西尼是一个三十二岁的年轻人，面容柔和，肤色白皙，很勇敢，并且喜欢社会和经济研究。他当晚花了几个小时阅读巴斯蒂亚的一本书，边读做边注，然后，将书打开放在桌上便睡着了。突然，他被一阵尖锐的门铃响声惊醒。他惊讶地跳了起来。大约早上七点钟，天亮了。
+做梦也想不到什么人会这么早来，还以为有人走错了门，于是他又躺下，正要继续睡，这时第二声门铃响了，比第一声还响，他被完全激怒了，穿着睡衣站起来，打开了门。
+迈克尔·德·博格斯和西奥多·巴克进来了。 迈克尔·德·博格斯是维尔西尼的邻居。他住在米兰街 16 号。
+西奥多·巴克和米歇尔脸色苍白，显得非常激动。
+“维尔西尼，”米歇尔说，“马上穿好衣服——波恩刚刚被捕。”
+“呸！” 维尔西尼惊呼道。 “莫甘生意又开始了吗？”
+“不仅如此，”米歇尔回答说。 “半小时前，博恩的妻子和女儿来找我。他们把我吵醒了。博恩今天早上六点在床上被捕。”
+“这意味着什么？”维西尼问。
+铃声又响了。
+“来人可能会告诉我们，”迈克尔·德·博格斯回答道。
+维尔西尼打开了门。是皮埃尔·勒弗朗克代表。他确实带来了谜题的答案。
+“你知道发生了什么事吗？”他说。
+“是的，”米歇尔回答。 “鲍恩在监狱里。”
+“他们要逮捕共和党，”皮埃尔·勒弗朗克说。 “你读过布告吗？”
+皮埃尔·勒弗朗克向他们解释说，当时墙上贴满了标语牌，好奇的人群正蜂拥而至阅读这些标语牌，他在街角瞥了一眼其中的一个标语牌，他们已经开始动手了。
+“动手！”米歇尔惊呼道。 “更确切地说是罪行。”
+皮埃尔·勒弗朗克补充说，共有三张标语牌——一个法令和两个公告——三张都写在白纸上，并且贴得很近。
+该法令以大字印刷。
+和米歇尔·德布尔热一样住在附近（盖亚尔城 4 号）的前选民莱萨克随后进来了。他带来了同样的消息，并告诉他们夜间逮捕了更多人。
+一分钟也不能耽搁了。
+他们去把消息告诉住在布尔索街的议会秘书伊万，伊万是左派任命的。
+有必要立即召开会议。必须警告那些还没被捕的共和党代表，并立即召集他们。
+韦尔西尼说：“我去找维克多·雨果。”
+现在是早上八点。我醒了，正在床上工作。我的仆人走进来，带着惊恐的神情说——
+“一位人民代表在外面，他想和您说话，先生。”
+“是谁？”
+“韦尔西尼先生。”
+“让他进来。”
+维尔西尼进来后告诉我发生了什么事。我从床上跳起来。
+他告诉我在前选民莱萨克的房间里“会合”。
+“马上去通知其他代表，”我说。
+随后他走了。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="day1_chapter1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="day1_chapter1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="day1_chapter1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="day1_chapter1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

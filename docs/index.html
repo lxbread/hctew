@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第一章 ”安全“</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">第一天：伏击</li><li class="chapter-item expanded "><a href="day1_chapter1.html" class="active"><strong aria-hidden="true">1.</strong> 第一章 ”安全“</a></li><li class="chapter-item expanded "><a href="day1_chapter2.html"><strong aria-hidden="true">2.</strong> 第二章 沉睡的巴黎——钟声响起</a></li><li class="chapter-item expanded affix "><li class="part-title">第二天：挣扎</li><li class="chapter-item expanded "><a href="day1_chapter1.html"><strong aria-hidden="true">3.</strong> 第一章</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>1851年12月1日，查拉斯耸了耸肩，卸下了他的配枪。事实上，他觉得不太可能发生政变。他认为路易·波拿巴先生不会有这种非法暴力行为。今天的主要问题显然是德温克的选举；很明显，政府只是在考虑这个问题，而没有任何行动。至于反对共和国和反对人民的阴谋，怎么会有人预谋这样的诡计呢？谁有能力实现这样的梦呢？一场戏剧必须有一个演员来演绎，而现在的确还没有这样的人。践踏权利，镇压议会，废除宪法，扼杀共和国，推翻国家，玷污国旗，玷污军队，收买教士和行政官，成功，胜利，治理，管理，流放，放逐，运输，毁灭，暗杀，统治，与这些同谋者一起，法律最终就像一张肮脏的腐败之床。天啊！所有这些暴行都将被实施！而由谁来实施呢？一个巨人？不，是一个侏儒。人们对这一想法嗤之以鼻。他们不再说 &quot;这是什么罪行！&quot;而是说 &quot;这是什么闹剧！&quot; 因为他们轻蔑地说到：令人发指的罪行也需要道德底线。对某些人来说，称他们的行为是罪行都太高尚了。一个人要想实现雾月 18 日政变，需要在过去取得阿尔科勒战役的成绩，在未来取得奥斯特利茨战役的成绩。成为一个伟大的无赖需要众多的拥趸者。人们内向嘀咕，这个霍顿斯的儿子是谁？他没有阿尔科勒战役的成绩，只有斯特拉斯堡围困战那样的战绩；没有奥斯特利茨战役的成绩，而是有布洛涅战役的战绩。他是一个法国人，在荷兰出生，被归化为瑞士人；他是一个波拿巴与维赫尔杂交的人；人们只对他飞扬跋扈的姿态的可笑而津津乐道，而且他还满嘴谎言。这个波拿巴并没有什么威信，与其说他是金子的赝品，不如说他连铅都不是，而且法国士兵肯定追随这个假的拿破仑叛乱、暴行、屠杀、暴行、叛国。他的流氓行径不会得逞。没有一个军团会听他指挥。此外，他为什么要做这样的尝试呢？他确实有可疑的地方，但为什么要认为他是一个绝对的恶棍呢？这种极端的暴行是他无法做到的；客观上他无法做到，为什么在主观上判断他能够做到呢？他没有表达过衷心吗？他不是说：&quot;在欧洲没有人怀疑我的话吗&quot; 别害怕。对此，我们可以这样回答：犯罪的规模可大可小。大的有凯撒；小的有曼德林。凯撒通过了卢比孔河，曼德林在阴沟里游荡。但聪明的人插话说：&quot;我们不是被冒犯性的猜想所影响吗？这个人已经被流放，而且很不幸。流放会使人清醒，不幸会使人改正&quot;。
+路易·波拿巴则提出了强烈的抗议。对他有利的事实比比皆是。为什么他不应该真诚地行事？他已经做出了世人皆知承诺。1848年10月底，当时作为总统候选人的他去拉图尔奥弗涅街道的37号拜访了一位名人，他对这位名人说：&quot;我想和你解释一下。他们诽谤我。我给你的印象是一个疯子吗？ 他们认为我想让拿破仑复活。有两个拥有伟大的野心的人，拿破仑和华盛顿。一个是天赋极高的人，另一个是有高尚德行的人。 我不是天赋极高的人，我想成为德行高尚的人。&quot;其中哪些取决于我们自己？哪些可以靠我们的意志完成？成为天才？不是。要成为正直的人？是的。天才的实现是不可能的，而正直的实现是有可能的。那我能恢复拿破仑的什么呢？只有一件事--犯罪。这真是一个值得一试的雄心壮志! 人们为什么应该敬重我？共和国已经建立，我不是一个伟人，我不会模仿拿破仑；但我是一个诚实的人。我将模仿华盛顿。我将以波拿巴之名，被刻于两页法国历史：第一页是犯罪和成就，第二页是正直和荣誉。而第二页也许会比第一页更有价值。为什么呢？因为如果说拿破仑是伟大的，那么华盛顿就是更好的人。在有罪的英雄和好公民之间，我选择好公民。这就是我的志向。&quot; 
+从1848年到1851年，经过了三年时间。人们长期以来一直怀疑路易·波拿巴；但长期的怀疑会使人的智力变得迟钝，并因无结果的警觉而使自己疲惫。路易·波拿巴曾有过马格纳和鲁赫这样的弄虚作假的大臣；但他也有过莱昂·福舍尔和奥迪隆·巴罗特这样直截了当的大臣；最后这些人都说他是正直和真诚的。有人看到他在哈姆的门前捶胸顿足；他的养姐霍坦斯·科努夫人给米罗斯劳斯基写信说：&quot;我是一个好的共和党人，我可以为他回答。&quot; 他在哈姆的朋友，佩奥格，一个忠诚的人，宣称：&quot;路易·波拿巴没有能力叛国&quot;。难道路易·波拿巴没有写过题为&quot;贫民主义 &quot;的作品？在爱丽舍宫的亲密圈子里，波托基伯爵是共和党人，德奥赛伯爵是自由党人；路易·波拿巴对波托基说：&quot;我是民主派的人，&quot;对德奥赛说：&quot;我是自由派的人。&quot; 杜哈雷侯爵反对政变，而杜哈雷侯爵夫人则赞成政变。路易·波拿巴对侯爵说：&quot;不用怕&quot;（确实，他对侯爵夫人耳语说：&quot;平静下来&quot;）。议会在这里和那里表现出一些不安的症状之后，已经变得平静了。诺伊迈尔将军，&quot;他是可以信赖的&quot;，而且他在里昂的位置上需要向巴黎进军。昌加尼耶感叹道：&quot;人民的代表，在和平中进行审议。至连路易·波拿巴本人也说过这样的名言：&quot;我认为任何一个要用武力改变法律规定的人都是我国家的敌人。&quot;而且，军队就是 &quot;武力&quot;，军队拥有领导人，那些受人爱戴和能取得胜利的领导人。拉莫里西埃、昌加尼埃、卡瓦尼亚克、勒弗洛、贝多、沙拉斯；谁能想象非洲的军队会逮捕非洲的将军们？1851年11月28日星期五，路易·波拿巴对米歇尔·德·布尔热说：&quot;如果我想做错事，我也做不到。昨天，星期四，我邀请了巴黎驻军的五位上校到我的桌前，我突发奇想，想逐一询问他们。五个人都向我声明，军队永远不会参与政变，也会一直维护议会的不可侵犯性。你可以告诉你的朋友这一点。&quot;--&quot;他笑了，&quot;米歇尔·布尔热放心地说，&quot;我也笑了。&quot;此后，米歇尔·德·布尔热在《论坛报》上宣称，&quot;这就是适合我的人。&quot; 在同年11月，一份讽刺杂志因一幅描绘了射击馆和路易·波拿巴以宪法为靶子的漫画被指控诽谤共和国总统并被判处罚款和监禁。内政部长莫里尼在总统面前宣布，&quot;公共权力的监护人绝不应该违反法律，否则他就会成为--&quot;&quot;一个不诚实的人&quot;，总统插话说。所有这些话和事实都是众所周知的。政变在物质上和道义上的不可能性对所有人来说都是显而易见的。激怒国民议会！逮捕众议员 逮捕众议员! 多么疯狂的行为! 正如我们所看到的，长期保持警惕的查拉斯卸下了他的配枪。安全感是完全的、一致的。然而，我们中的一些人在议会中仍然保留着一些疑虑，他们偶尔会质疑一下，但我们却被当成是傻瓜一样。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="next" href="day1_chapter2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="next" href="day1_chapter2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
